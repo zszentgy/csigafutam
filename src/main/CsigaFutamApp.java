@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class CsigaFutamApp {
@@ -11,14 +13,22 @@ public class CsigaFutamApp {
         System.out.println("Tippeld meg, melyik csiga nyer (piros, zold, kek):");
         String tipp = scanner.nextLine();
         verseny.indit();
-        Csiga nyertes = verseny.nyer();
+        List<Csiga> nyertesek = new ArrayList<>();
+        nyertesek = verseny.nyer();
+        boolean nyert = false;
 
-        System.out.println("A nyertes csiga: " + nyertes.getSzin());
-        if (nyertes.getSzin().equals(tipp)) {
+        for (Csiga nyertes : nyertesek) {
+            if (nyertes.getSzin().equals(tipp)) {
+                nyert = true;
+            }
+        }
+
+        if (nyert) {
             System.out.println("Gratulálunk, eltaláltad!");
         } else {
-            System.out.println("Sajnos nem találtad el.");
+            System.out.println("Sajnos rosszul tippeltél.");
         }
+
         scanner.close();
     }
 }

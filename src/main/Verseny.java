@@ -17,7 +17,7 @@ public class Verseny {
 
     public void indit() {
         for (int i = 0; i < korokSzama; i++) {
-            System.out.println(i + ". kör");
+            System.out.println((i+1) + ". kör");
             kor();
             System.out.println("");
         }
@@ -35,15 +35,29 @@ public class Verseny {
         }
     }
 
-    public Csiga nyer() {
-        Csiga nyertes = null;
+    public List<Csiga> nyer() {
+        List<Csiga> nyertesek = new ArrayList<>();
         int maxTav = 0;
         for (Csiga csiga : csigak) {
             if (csiga.getMessze() > maxTav) {
                 maxTav = csiga.getMessze();
-                nyertes = csiga;
+                nyertesek.clear();
+                nyertesek.add(csiga);
+            } else if (csiga.getMessze() == maxTav) {
+                nyertesek.add(csiga);
             }
         }
-        return nyertes;
+     
+        // Kiíratjuk a nyertes csigák színeit
+        if (nyertesek.size() > 1) {
+            System.out.println("A verseny döntetlen! Nyertes csigák:");
+        } else {
+        System.out.println("A verseny nyertese:");
+        }
+        for (Csiga nyertes : nyertesek) {
+            System.out.println(nyertes.getSzin() + " csiga");
+        }
+        System.out.println("");
+        return nyertesek;
     }
 }
