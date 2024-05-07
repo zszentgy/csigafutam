@@ -13,11 +13,14 @@ public class Csiga {
 
     public void lep() {
         int lepes = (int) (Math.random() * 4); // 0-3 közötti lépések
+        System.out.println(szin + ": " + messze + " + (" + lepes + " * " + sebesseg + ") = " + (messze+(lepes*sebesseg)));
         messze += lepes * sebesseg;
+        sebesseg = 1; // a gyorsító csak egyszer használható
     }
 
     public void kapGyorsitot() {
         sebesseg = 2; // gyorsítás, dupla lépés
+        System.out.println("Gyorsítót kapott: " + szin);
     }
 
     public int getMessze() {
